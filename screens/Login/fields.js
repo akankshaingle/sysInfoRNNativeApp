@@ -7,9 +7,10 @@ const passwordInputRef = createRef();
 
 export const fields = [
     {
-        name: 'username',
+        name: 'email',
+        autoCapitalize: 'none',
         component: Input,
-        placeholder: "username",
+        placeholder: "email",
         keyboardType: "email-address",
         returnKeyType: 'next',
         onSubmitEditing: () => {
@@ -44,16 +45,10 @@ export const fields = [
         name: 'rememberMe',
         title: "Remember me?",
         btnstyle: { justifyContent: 'flex-end', },
-        validate: value => {
-            if (!value) {
-                return 'Required Field';
-            }
-            return '';
-        },
     },
 ];
 export const loginInitialValues = {
-    username: '',
+    email: '',
     password: '',
     rememberMe: false,
 }

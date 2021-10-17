@@ -5,9 +5,27 @@ import { View, Text, Keyboard } from 'react-native'
 import { registerFields, registerInitialValues } from './fields';
 import Typography from '../../components/Typography';
 import { useHeaderHeight } from '@react-navigation/elements';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import axiosInstance from '../../utils/axiosInstance';
 
-const Register = () => {
+const Register = ({ navigation }) => {
     const headerHeight = useHeaderHeight();
+    const onSubmit = async (values, actions) => {
+        try {
+            const { confirmPassword, ...rest } = values;
+            const res = await axiosInstance.post('register', rest);
+            await AsyncStorage.setItem('@user_info', JSON.stringify(res.data));
+            navigation.reset({
+                index: 0,
+                routes: [{ name: "Home" }]
+            });
+        }
+        catch (error) {
+            actions.setErrors({ serverError: error.response.data })
+        }
+        // console.warn(res);
+        // Keyboard.dismiss();
+    };
     return (
         <View style={{ marginTop: headerHeight, flex: 1 }}>
             {/* <Typography
@@ -26,10 +44,7 @@ const Register = () => {
                 btnProps={{ title: 'REGISTER' }}
                 fields={registerFields}
                 initialValues={registerInitialValues}
-                onSubmit={value => {
-                    console.warn(value);
-                    Keyboard.dismiss();
-                }} />
+                onSubmit={onSubmit} />
         </View>
     )
 }

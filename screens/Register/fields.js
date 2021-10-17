@@ -2,17 +2,19 @@ import { createRef } from 'react';
 import Input from '../../components/Input';
 
 const emailRef = createRef();
+const lastNameRef = createRef();
+const ageRef = createRef();
 const passwordRef = createRef();
 const confirmPasswordRef = createRef();
 
 export const registerFields = [
     {
-        name: 'name',
+        name: 'firstName',
         component: Input,
-        placeholder: "name",
+        placeholder: "First Name",
         returnKeyType: 'next',
         onSubmitEditing: () => {
-            emailRef.current.focus();
+            lastNameRef.current.focus();
         },
         validate: value => {
             if (!value) {
@@ -22,10 +24,48 @@ export const registerFields = [
         },
     },
     {
+        innerRef: lastNameRef,
+        name: 'lastName',
+        component: Input,
+        placeholder: "Last Name",
+        returnKeyType: 'next',
+        onSubmitEditing: () => {
+            ageRef.current.focus();
+        },
+        validate: value => {
+            if (!value) {
+                return 'Required Field';
+            }
+            return '';
+        },
+    },
+    {
+        innerRef: ageRef,
+        name: 'age',
+        component: Input,
+        placeholder: "age",
+        returnKeyType: 'next',
+        keyboardType: "number-pad",
+        maxLength: 3,
+        onSubmitEditing: () => {
+            emailRef.current.focus();
+        },
+        validate: value => {
+            if (!value) {
+                return 'Required Field';
+            }
+            if (value < 1 || value > 100) {
+                return 'Value should be between 0 and 100';
+            }
+            return '';
+        },
+    },
+    {
         innerRef: emailRef,
         name: 'email',
         component: Input,
         placeholder: "email",
+        autoCapitalize: 'none',
         keyboardType: "email-address",
         returnKeyType: 'next',
         onSubmitEditing: () => {
@@ -91,7 +131,9 @@ export const registerFields = [
     // },
 ];
 export const registerInitialValues = {
-    name: '',
+    firstName: '',
+    lastName: '',
+    age: '',
     email: '',
     password: '',
     confirmPassword: '',

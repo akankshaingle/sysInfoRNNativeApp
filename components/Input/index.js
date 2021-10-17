@@ -11,6 +11,7 @@ const Input = ({
     return (
         <View>
             <TextInput
+
                 ref={innerRef}
                 style={styles.Input}
                 name={name}
