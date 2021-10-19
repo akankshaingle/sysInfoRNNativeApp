@@ -29,7 +29,31 @@ const styles = StyleSheet.create({
         fontSize: 16,
         lineHeight: 20,
         paddingLeft: 5
-    }
+    },
+    h2: {
+        fontSize: 24,
+        fontWeight: '700',
+        lineHeight: 30,
+        letterSpacing: 0.4,
+        color: 'red',
+    },
+    h3: {
+        fontSize: 20,
+        fontWeight: '600',
+        lineHeight: 24,
+        letterSpacing: 0.4,
+    },
+    body1: {
+        fontSize: 18,
+        fontWeight: '400',
+        lineHeight: 21,
+    },
+    body2: {
+        fontSize: 16,
+        fontWeight: '400',
+        lineHeight: 20,
+        color: 'dodgerblue',
+    },
 });
 export default styles;
 

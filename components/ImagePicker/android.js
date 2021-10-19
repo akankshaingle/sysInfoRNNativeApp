@@ -13,22 +13,28 @@ import { RectButton } from 'react-native-gesture-handler';
 export const ImagePickerModelView = ({ onPress }) => {
 
     return (
-
-        <View style={styles.modalView}>
-            <View style={styles.modalText}>
-                <Typography variant='h1'>Select Avtar</Typography>
+        <View>
+            {/* <Modal visible={true}
+                animationType="fade"
+                transparent={true} > */}
+            {/* <View style={styles.centeredView}> */}
+            <View style={styles.modalView}>
+                <View style={styles.modalText}>
+                    <Typography variant='h1'>Select Avtar</Typography>
+                </View>
+                <RectButton onPress={(type) => onPress('camera')} style={[styles.button]}>
+                    <Typography style={styles.textStyle}>Select from Camera</Typography>
+                </RectButton>
+                <TouchableHighlight onPress={(type) => onPress('library')} style={styles.button}>
+                    <Typography style={styles.textStyle}>Select from Library</Typography>
+                </TouchableHighlight>
+                <TouchableHighlight onPress={(type) => onPress('cancel')} style={styles.button}>
+                    <Typography style={styles.textStyle}>cancle</Typography>
+                </TouchableHighlight>
             </View>
-            <TouchableHighlight onPress={() => onPress('camera')} style={[styles.button]}>
-                <Typography style={styles.textStyle}>Select from Camera</Typography>
-            </TouchableHighlight>
-            <TouchableHighlight onPress={() => onPress('library')} style={styles.button}>
-                <Typography style={styles.textStyle}>Select from Library</Typography>
-            </TouchableHighlight>
-            <TouchableHighlight onPress={() => onPress('cancel')} style={styles.button}>
-                <Typography style={styles.textStyle}>cancel</Typography>
-            </TouchableHighlight>
+            {/* </View> */}
+            {/* </Modal> */}
         </View>
-
     )
 }
 class ImagePicker extends PureComponent {
@@ -42,6 +48,7 @@ class ImagePicker extends PureComponent {
     }
     render() {
         const { isModalVisible } = this.state;
+
         return (
             <Modal visible={isModalVisible}
                 animationType="fade"
@@ -79,7 +86,7 @@ class ImagePicker extends PureComponent {
                     }} />
                 </View>
             </Modal>
-        );
+        )
     }
 }
 

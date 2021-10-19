@@ -8,9 +8,55 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NavigationContainer, useNavigationContainerRef } from '@react-navigation/native';
 
 
-
+// Stack Navigation
 const Stack = createNativeStackNavigator();
+
+const HomeStack = createNativeStackNavigator();
+const GalleryStack = createNativeStackNavigator();
+const SettingsStack = createNativeStackNavigator();
+
+
+// Tab Navigation
 const Tab = createBottomTabNavigator();
+
+const HomeStackNavigation = () => {
+  return (
+    <HomeStack.Navigator>
+      <HomeStack.Screen
+        options={{
+          title: 'Home',
+        }}
+        name="HomePage"
+        getComponent={() => require('./screens/Home').default}
+      />
+    </HomeStack.Navigator>
+  );
+};
+
+const GalleryStackNavigation = () => {
+  return (
+    <GalleryStack.Navigator>
+      <GalleryStack.Screen
+        name="GalleryPage"
+        getComponent={() => require('./screens/Gallery').default}
+      />
+    </GalleryStack.Navigator>
+  );
+};
+const SettingsStackNavigation = () => {
+  return (
+    <SettingsStack.Navigator>
+      <SettingsStack.Screen
+        name="SettingsPage"
+        getComponent={() => require('./screens/Settings').default}
+      />
+      <SettingsStack.Screen
+        name="ChangePassword"
+        getComponent={() => require('./screens/ChangePassword').default}
+      />
+    </SettingsStack.Navigator>
+  );
+};
 
 const HomeTabNavigation = () => {
   return (
@@ -32,6 +78,7 @@ const HomeTabNavigation = () => {
       screenOptions={{
         // headerTransparent: true,
         // headerShadowVisible: false,
+        headerShown: false,
         headerTitleAlign: 'center',
         headerTitleStyle: {
           fontSize: 25,
@@ -40,11 +87,12 @@ const HomeTabNavigation = () => {
           letterSpacing: 0.4,
         }
       }}>
-      <Tab.Screen name='Home' getComponent={() => require('./screens/Home').default} />
-      <Tab.Screen name='Settings' getComponent={() => require('./screens/Settings').default} />
+      <Tab.Screen name='Home' component={HomeStackNavigation} />
+      <Tab.Screen name='Gallery' component={GalleryStackNavigation} />
+      <Tab.Screen name='Settings' component={SettingsStackNavigation} />
     </Tab.Navigator >
-  )
-}
+  );
+};
 
 const App = () => {
   const navigationRef = useNavigationContainerRef();
@@ -86,6 +134,15 @@ const App = () => {
         <Stack.Group screenOptions={{ headerShown: false, }}>
           <Stack.Screen name='Home' component={HomeTabNavigation} />
         </Stack.Group>
+        <Stack.Screen
+          options={{
+            title: 'Details',
+            // headerTransparent: false,
+            // headerShadowVisible: false,
+          }}
+          name="DetailsPage"
+          getComponent={() => require('./screens/Details').default}
+        />
 
       </Stack.Navigator>
     </NavigationContainer>
