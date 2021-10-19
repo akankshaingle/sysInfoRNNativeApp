@@ -6,6 +6,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 // import HomeIcon from './assets/home.svg';
 // import SettingsIcon from './assets/settings.svg';
 import { NavigationContainer, useNavigationContainerRef } from '@react-navigation/native';
+// import { CustomDarkTheme, CustomLightTheme } from './Theme/theme';
+import { useColorScheme } from 'react-native';
+import { CustomDarkTheme, CustomLightTheme } from './screens/Theme/theme';
 
 
 // Stack Navigation
@@ -96,6 +99,7 @@ const HomeTabNavigation = () => {
 
 const App = () => {
   const navigationRef = useNavigationContainerRef();
+  const scheme = useColorScheme();
 
   const onReady = async () => {
     try {
@@ -115,7 +119,8 @@ const App = () => {
     }
   }
   return (
-    <NavigationContainer ref={navigationRef} onReady={onReady}>
+    <NavigationContainer ref={navigationRef} onReady={onReady}
+      theme={scheme === 'dark' ? CustomDarkTheme : CustomLightTheme}>
       <Stack.Navigator>
         <Stack.Group screenOptions={{
           headerTransparent: true,
@@ -137,8 +142,8 @@ const App = () => {
         <Stack.Screen
           options={{
             title: 'Details',
-            // headerTransparent: false,
-            // headerShadowVisible: false,
+            headerTransparent: true,
+            headerShadowVisible: false,
           }}
           name="DetailsPage"
           getComponent={() => require('./screens/Details').default}

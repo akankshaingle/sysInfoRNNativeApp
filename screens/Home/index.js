@@ -29,7 +29,7 @@ const Home = ({ navigation }) => {
     const renderItem = ({ item }) => {
         return (
             <RectButton
-                onPress={() => navigation.navigate('DetailsPage', { headerBackTitle: 'Home' })}
+                onPress={() => navigation.navigate('DetailsPage', { headerBackTitle: 'Home', item })}
                 key={item.id}
                 style={{
                     height: 200,
@@ -38,7 +38,7 @@ const Home = ({ navigation }) => {
                 }}
             >
                 <Image
-                    source={{ uri: item.thumbnailUrl }}
+                    source={{ uri: `${item.url}.png`, }}
                     style={{
                         flex: 1,
                         borderRadius: 10,
