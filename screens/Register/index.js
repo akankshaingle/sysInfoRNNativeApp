@@ -8,6 +8,7 @@ import { useHeaderHeight } from '@react-navigation/elements';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axiosInstance from '../../utils/axiosInstance';
 
+
 const Register = ({ navigation }) => {
     const headerHeight = useHeaderHeight();
     const onSubmit = async (values, actions) => {
@@ -23,16 +24,10 @@ const Register = ({ navigation }) => {
         catch (error) {
             actions.setErrors({ serverError: error.response.data })
         }
-        // console.warn(res);
-        // Keyboard.dismiss();
     };
     return (
         <View style={{ marginTop: headerHeight, flex: 1 }}>
-            {/* <Typography
-                variant='h1'
-                style={{ marginVertical: 5, textAlign: 'center' }}>
-                REGISTER
-            </Typography> */}
+
             <Form
                 validate={(values) => {
                     let errors = {};
@@ -40,13 +35,14 @@ const Register = ({ navigation }) => {
                         errors.confirmPassword = 'Confirm password should match with password';
                     }
                     return errors;
+
                 }}
                 btnProps={{ title: 'REGISTER' }}
                 fields={registerFields}
                 initialValues={registerInitialValues}
                 onSubmit={onSubmit} />
+
         </View>
     )
 }
-
 export default Register

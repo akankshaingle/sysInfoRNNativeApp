@@ -1,9 +1,11 @@
 import { createRef } from 'react';
 import Input from '../../components/Input';
+import Radio from '../../components/Radio';
 
 const emailRef = createRef();
 const lastNameRef = createRef();
 const ageRef = createRef();
+const genderRef = createRef();
 const passwordRef = createRef();
 const confirmPasswordRef = createRef();
 
@@ -48,7 +50,7 @@ export const registerFields = [
         keyboardType: "number-pad",
         maxLength: 3,
         onSubmitEditing: () => {
-            emailRef.current.focus();
+            genderRef.current.focus();
         },
         validate: value => {
             if (!value) {
@@ -59,6 +61,30 @@ export const registerFields = [
             }
             return '';
         },
+    },
+    {
+        innerRef: genderRef,
+        name: 'gender',
+        component: Radio,
+        placeholder: "gender",
+        returnKeyType: 'next',
+        onSubmitEditing: () => {
+            emailRef.current.focus();
+        },
+        validate: value => {
+            if (!value) {
+                return 'Required Field';
+            }
+            return '';
+        },
+        data: [
+            {
+                text: 'Male', value: 'male'
+            },
+            {
+                text: 'Female', value: 'female'
+            }
+        ]
     },
     {
         innerRef: emailRef,
@@ -117,23 +143,13 @@ export const registerFields = [
             return '';
         },
     },
-    // {
-    //     component: Checkbox,
-    //     name: 'rememberMe',
-    //     title: "Remember me?",
-    //     btnstyle: { justifyContent: 'flex-end', },
-    //     validate: value => {
-    //         if (!value) {
-    //             return 'Required Field';
-    //         }
-    //         return '';
-    //     },
-    // },
+
 ];
 export const registerInitialValues = {
     firstName: '',
     lastName: '',
     age: '',
+    gender: '',
     email: '',
     password: '',
     confirmPassword: '',

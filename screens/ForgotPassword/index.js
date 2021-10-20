@@ -1,17 +1,18 @@
 import React from 'react'
-// import { Form } from 'formik'
 import { View, Text, Keyboard } from 'react-native'
 import { forgotPasswordFields, forgotPasswordInitialValues } from './fields';
 import Form from '../../components/Form';
 import Typography from '../../components/Typography';
+import { useHeaderHeight } from '@react-navigation/elements';
 const ForgotPassword = () => {
+    const headerHeight = useHeaderHeight();
     return (
-        <View>
-            <Typography
+        <View style={{ marginTop: headerHeight, flex: 1 }}>
+            {/* <Typography
                 variant='h1'
                 style={{ marginVertical: 5, textAlign: 'center' }}>
-                RESET PASSWORD
-            </Typography>
+                FORGOT PASSWORD
+            </Typography> */}
             <Form
                 btnProps={{ title: 'SUBMIT' }}
                 fields={forgotPasswordFields}
@@ -20,17 +21,8 @@ const ForgotPassword = () => {
                     console.warn(value);
                     Keyboard.dismiss();
                 }} />
-            {/* <Typography style={{
-                textAlign: 'center',
-                paddingTop: 10,
-                top: 0,
-                // marginVertical: 290
 
-            }}>Don't Have Account? {` `}
-                <Typography style={{ color: 'red', textDecorationLine: 'underline' }}> SignUp</Typography>
-            </Typography> */}
         </View>
     )
 }
-
 export default ForgotPassword;

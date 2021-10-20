@@ -6,7 +6,7 @@ const confirmPasswordRef = createRef();
 
 export const forgotPasswordFields = [
     {
-        innerRef: emailRef,
+
         name: 'email',
         component: Input,
         placeholder: "email",
@@ -58,18 +58,7 @@ export const forgotPasswordFields = [
             return '';
         },
     },
-    // {
-    //     component: Checkbox,
-    //     name: 'rememberMe',
-    //     title: "Remember me?",
-    //     btnstyle: { justifyContent: 'flex-end', },
-    //     validate: value => {
-    //         if (!value) {
-    //             return 'Required Field';
-    //         }
-    //         return '';
-    //     },
-    // },
+
 ];
 export const forgotPasswordInitialValues = {
     email: '',

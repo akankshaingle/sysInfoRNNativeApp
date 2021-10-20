@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-    baseURL: 'https://ca9c-2409-4043-2115-50aa-38b8-379f-653c-d8e1.ngrok.io',
+    baseURL: 'https://0948-2409-4043-2e97-76f7-e1a0-3b0a-e658-d1df.ngrok.io',
     timeout: 3000,
     timeoutErrorMessage: 'Server down...Please try again.',
 });

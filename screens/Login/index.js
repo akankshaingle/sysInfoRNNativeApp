@@ -8,6 +8,8 @@ import { useHeaderHeight } from '@react-navigation/elements';
 import axiosInstance from '../../utils/axiosInstance';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import { RectButton } from 'react-native-gesture-handler';
+
 // const headerHeight = useHeaderHeight();
 const Login = ({ navigation }) => {
     const headerHeight = useHeaderHeight();
@@ -47,6 +49,26 @@ const Login = ({ navigation }) => {
                     onPress={() => { navigation.navigate('Register') }}
                     style={{ color: 'red', textDecorationLine: 'underline' }}>SignUp</Typography>
             </Typography>
+            <RectButton
+                onPress={() => navigation.navigate('ForgotPassword')}
+                style={{
+                    marginVertical: 10,
+                    paddingHorizontal: 10,
+                    paddingVertical: 10,
+                    // backgroundColor: '#F7F7F7',
+                    alignItems: 'center'
+                }}>
+                <View style={{ alignItems: 'center' }}>
+                    <Typography style={{
+                        fontWeight: '700',
+                        color: 'red',
+                        fontSize: 14,
+                        lineHeight: 14,
+                    }}>
+                        Forgot Password ?
+                    </Typography>
+                </View>
+            </RectButton>
         </View>
     )
 }

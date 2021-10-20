@@ -17,6 +17,7 @@ const Stack = createNativeStackNavigator();
 const HomeStack = createNativeStackNavigator();
 const GalleryStack = createNativeStackNavigator();
 const SettingsStack = createNativeStackNavigator();
+const LoginStack = createNativeStackNavigator();
 
 
 // Tab Navigation
@@ -24,7 +25,16 @@ const Tab = createBottomTabNavigator();
 
 const HomeStackNavigation = () => {
   return (
-    <HomeStack.Navigator>
+    <HomeStack.Navigator
+      screenOptions={{
+        headerTitleAlign: 'center',
+        headerTitleStyle: {
+          fontSize: 25,
+          fontWeight: '700',
+          color: 'red',
+          letterSpacing: 0.4,
+        }
+      }}>
       <HomeStack.Screen
         options={{
           title: 'Home',
@@ -32,14 +42,35 @@ const HomeStackNavigation = () => {
         name="HomePage"
         getComponent={() => require('./screens/Home').default}
       />
+      <HomeStack.Screen
+        options={{
+          title: 'Animation',
+        }}
+        name="AnimationPage"
+        getComponent={() => require('./screens/Animation').default}
+      />
     </HomeStack.Navigator>
   );
 };
 
 const GalleryStackNavigation = () => {
   return (
-    <GalleryStack.Navigator>
+    <GalleryStack.Navigator
+      screenOptions={{
+        headerTitleAlign: 'center',
+        headerTitleStyle: {
+          fontSize: 25,
+          fontWeight: '700',
+          color: 'red',
+          letterSpacing: 0.4,
+        }
+      }}
+    >
       <GalleryStack.Screen
+        options={{
+          title: 'Gallery',
+        }}
+
         name="GalleryPage"
         getComponent={() => require('./screens/Gallery').default}
       />
@@ -48,18 +79,35 @@ const GalleryStackNavigation = () => {
 };
 const SettingsStackNavigation = () => {
   return (
-    <SettingsStack.Navigator>
+    <SettingsStack.Navigator
+      screenOptions={{
+        headerTitleAlign: 'center',
+        headerTitleStyle: {
+          fontSize: 25,
+          fontWeight: '700',
+          color: 'red',
+          letterSpacing: 0.4,
+        }
+      }}
+    >
       <SettingsStack.Screen
+        options={{
+          title: 'Settings',
+        }}
         name="SettingsPage"
         getComponent={() => require('./screens/Settings').default}
       />
       <SettingsStack.Screen
+        options={{
+          title: 'Reset Password',
+        }}
         name="ChangePassword"
         getComponent={() => require('./screens/ChangePassword').default}
       />
     </SettingsStack.Navigator>
   );
 };
+
 
 const HomeTabNavigation = () => {
   return (
@@ -79,8 +127,8 @@ const HomeTabNavigation = () => {
       //   };
       // }}
       screenOptions={{
-        // headerTransparent: true,
-        // headerShadowVisible: false,
+        headerTransparent: false,
+        headerShadowVisible: false,
         headerShown: false,
         headerTitleAlign: 'center',
         headerTitleStyle: {
@@ -123,6 +171,7 @@ const App = () => {
       theme={scheme === 'dark' ? CustomDarkTheme : CustomLightTheme}>
       <Stack.Navigator>
         <Stack.Group screenOptions={{
+
           headerTransparent: true,
           headerShadowVisible: false,
           headerTitleAlign: 'center',
@@ -135,8 +184,12 @@ const App = () => {
         }}>
           <Stack.Screen name='Login' getComponent={() => require('./screens/Login').default} />
           <Stack.Screen name='Register' getComponent={() => require('./screens/Register').default} />
+          <Stack.Screen
+            name="ForgotPassword" getComponent={() => require('./screens/ForgotPassword').default} />
         </Stack.Group>
-        <Stack.Group screenOptions={{ headerShown: false, }}>
+        <Stack.Group screenOptions={{
+          headerShown: false,
+        }} >
           <Stack.Screen name='Home' component={HomeTabNavigation} />
         </Stack.Group>
         <Stack.Screen
@@ -144,6 +197,12 @@ const App = () => {
             title: 'Details',
             headerTransparent: true,
             headerShadowVisible: false,
+            headerTitleStyle: {
+              fontSize: 25,
+              fontWeight: '600',
+              // color: 'red',
+              letterSpacing: 0.4,
+            }
           }}
           name="DetailsPage"
           getComponent={() => require('./screens/Details').default}
